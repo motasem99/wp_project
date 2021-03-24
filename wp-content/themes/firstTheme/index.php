@@ -1,32 +1,36 @@
 <?php get_header(); ?>
 
 <?php
-update_post_meta(14, 'auth_name', 'mutasem kwaik');
-add_post_meta(14, 'auth_name', 'noor');
+// update_post_meta(14, 'auth_name', 'mutasem kwaik');
+// add_post_meta(14, 'auth_name', 'noor');
 
     $array = array(
         'post_type' => 'post',
     );
 
-$post = new WP_Query($array);
-// print_r($post->posts);
+$the_query = new WP_Query($array);
+    if ($the_query->have_posts()) {
+        while ($the_query->have_posts()) {
+            $the_query->the_post();
 
-?>
-
-<?php foreach($post->posts as $row) {
-    $m = get_post_meta($row->ID, 'show', true);
-    $num = absint($m)+1;
-        update_post_meta($row->ID, 'show', $num);
-    ?>
+            $show = get_post_meta(get_the_ID(), 'show', true);
+            $num = absint($show)+1;
+            update_post_meta(get_the_ID(), 'show', $num); ?>
     <div style="margin: 60px; width: 80%;height: 200px; background-color: #ccc; padding: 10px; ">
-        <?php echo $row->post_title ?>
+        <?php the_title(); ?>
         <br>
-        <?php echo $row->post_content ?>
+        <?php the_content(); ?>
         <br>
             <?php echo __('عدد المشاهدات :'); ?>
-        <?php print_r(get_post_meta($row->ID, 'show', true)); ?>
+            <?php _e('عدد المشاهات'); ?>
+            <?php echo $num ?>
 
     </div>
-<?php } ?>
+    <?php
+        }
+    } else {
+        echo __('no posts');
+    }
 
+?>
 <?php get_footer(); ?>
