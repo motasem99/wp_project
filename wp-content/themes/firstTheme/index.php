@@ -17,14 +17,18 @@ $the_query = new WP_Query($array);
             $num = absint($show)+1;
             update_post_meta(get_the_ID(), 'show', $num); ?>
     <div style="margin: 60px; width: 80%;height: 200px; background-color: #ccc; padding: 10px; ">
+        <?php $pic = get_the_post_thumbnail_url(get_the_ID(), 'image_index_news'); ?>
+        <?php print_r($pic); ?>
+        <img src="<?php echo $pic; ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
         <?php the_title(); ?>
+        <?php the_post_thumbnail(array(100, 100)); ?>
         <br>
         <?php the_content(); ?>
         <br>
             <?php echo __('عدد المشاهدات :'); ?>
             <?php _e('عدد المشاهات'); ?>
             <?php echo $num ?>
-
+            <a href="<?php the_permalink(); ?>"> <?php _e('المزيد'); ?> </a>
     </div>
     <?php
         }
