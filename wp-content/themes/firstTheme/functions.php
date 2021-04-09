@@ -3,6 +3,20 @@
 add_theme_support('post-thumbnails');
 add_image_size('image_index_news', 400, 400);
 
+
+function add_nav_menu(){
+    register_nav_menu('head_index',__('header_index '));
+}
+
+add_action('init','add_nav_menu');
+
+
+function add_css_file() {
+    wp_enqueue_style('bootstrap', get_template_directory_uri().'css/style.css');
+}
+
+add_action('wp_enqueue_scripts');
+
 // function print_in_footer() {
 //     echo '<div style="background-color: red; width: 100%; height: 50px">
 //     </div>';

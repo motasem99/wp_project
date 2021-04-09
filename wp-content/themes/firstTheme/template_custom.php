@@ -1,10 +1,28 @@
-<?php get_header(); ?>
-
 <?php
-// update_post_meta(14, 'auth_name', 'mutasem kwaik');
-// add_post_meta(14, 'auth_name', 'noor');
 
-    $array = array(
+    /**
+     * template name: custom
+     * 
+     */
+
+
+    get_header('two');
+?>
+
+
+<?php the_title();?>
+<br>
+<br>
+<br>
+<?php the_content(); ?>
+
+
+<br>
+<br>
+<br>
+<br>
+<?php 
+$array = array(
         'post_type' => 'post',
     );
 
@@ -31,12 +49,14 @@ $the_query = new WP_Query($array);
             <?php echo $num ?>
             <a href="<?php the_permalink(); ?>"> <?php _e('المزيد'); ?> </a>
     </div>
+    
     <?php
         }
     } else {
         echo __('no posts');
     }
 ?>
+
 
 
 <?php get_footer(); ?>
