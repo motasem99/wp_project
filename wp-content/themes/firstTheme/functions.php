@@ -12,10 +12,13 @@ add_action('init','add_nav_menu');
 
 
 function add_css_file() {
-    wp_enqueue_style('bootstrap', get_template_directory_uri().'css/style.css');
+    wp_enqueue_style('bootstrap1', get_template_directory_uri().'/css/style.css');
+    wp_enqueue_style('bootstrap2', get_template_directory_uri().'/css/style.css');
+    wp_enqueue_style('bootstrap3', get_template_directory_uri().'/css/style.css');
+    wp_enqueue_style('bootstrap4', get_template_directory_uri().'/css/style.css');
 }
 
-add_action('wp_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'add_css_file');
 
 // function print_in_footer() {
 //     echo '<div style="background-color: red; width: 100%; height: 50px">
