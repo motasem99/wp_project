@@ -2,7 +2,7 @@
 
 add_theme_support('title-tag');
 add_theme_support('post-thumbnails');
-// add_image_size('home_slider', 400, 500);
+add_image_size('home_slider', 300, 150);
 
 
 function add_css_file() {
