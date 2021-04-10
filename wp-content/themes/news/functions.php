@@ -1,9 +1,16 @@
 <?php
 
 add_theme_support('title-tag');
-add_theme_support('post-thumbnails');
-add_image_size('home_slider', 300, 150);
 
+
+
+function image_sup() {
+    add_theme_support('post-thumbnails');
+    add_image_size('home_slider', 300, 180, true);
+}
+
+add_action('after_setup_theme', 'image_sup')
+;
 
 function add_css_file() {
     wp_enqueue_style('fontawesome', get_template_directory_uri().'/assets/css/fontawesome.css');
