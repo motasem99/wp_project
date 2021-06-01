@@ -1,8 +1,5 @@
 <?php
-/**
- * @package Hello_Dolly
- * @version 1.7.2
- */
+
 /*
 Plugin Name: Hello mutasem
 Plugin URI: http://wordpress.org/plugins/hello-dolly/
@@ -12,89 +9,90 @@ Version: 1.7.2
 Author URI: http://ma.tt/
 */
 
-function hello_dolly_get_lyric() {
-	/** These are the lyrics to Hello Dolly */
-	$lyrics = "Hello, Dolly
-Well, hello, Dolly
-It's so nice to have you back where you belong
-You're lookin' swell, Dolly
-I can tell, Dolly
-You're still glowin', you're still crowin'
-You're still goin' strong
-I feel the room swayin'
-While the band's playin'
-One of our old favorite songs from way back when
-So, take her wrap, fellas
-Dolly, never go away again
-Hello, Dolly
-Well, hello, Dolly
-It's so nice to have you back where you belong
-You're lookin' swell, Dolly
-I can tell, Dolly
-You're still glowin', you're still crowin'
-You're still goin' strong
-I feel the room swayin'
-While the band's playin'
-One of our old favorite songs from way back when
-So, golly, gee, fellas
-Have a little faith in me, fellas
-Dolly, never go away
-Promise, you'll never go away
-Dolly'll never go away again";
-
-	// Here we split it into lines.
-	$lyrics = explode( "\n", $lyrics );
-
-	// And then randomly choose a line.
-	return wptexturize( $lyrics[ mt_rand( 0, count( $lyrics ) - 1 ) ] );
+add_action('wp_footer', 'print_in_footer');
+function print_in_footer() {
+	$args = array(
+		'post_type' => 'movies',
+		// 'posts_per_page' => 3,
+		// 'paged' => 2,
+		'orderby' => 'ID',
+		'order' => 'DESC',
+	  );
+	  $the_query = new WP_Query($args);
+	  if ($the_query->have_posts()) {
+		while ($the_query->have_posts()) {
+			$the_query->the_post();
+		  ?>
+  <div class="item" style="width: 80%; height: 300px; display: flex">
+	  <?php $pic = get_the_post_thumbnail_url(get_the_ID(), 'home_slider') ?>
+	<img style="width: 70%; height: 260px" src="<?php echo $pic; ?>" title="<?php the_title() ?>" alt="<?php the_title() ?>">
+	<div class="down-content" style="padding: 3rem 3rem">
+	  <h4><?php the_title() ?></h4>
+	  <div> <?php  the_content() ?> </div>
+	</div>
+  </div>
+<?php
+	}}
 }
 
-// This just echoes the chosen line, we'll position it later.
-function hello_dolly() {
-	$chosen = hello_dolly_get_lyric();
-	$lang   = '';
-	if ( 'en_' !== substr( get_user_locale(), 0, 3 ) ) {
-		$lang = ' lang="en"';
+
+function custom_post_type() {
+ 
+	// Set UI labels for Custom Post Type
+		$labels = array(
+			'name'                => _x( 'Movies', 'Post Type General Name', 'twentytwenty' ),
+			'singular_name'       => _x( 'Movie', 'Post Type Singular Name', 'twentytwenty' ),
+			'menu_name'           => __( 'Movies', 'twentytwenty' ),
+			'parent_item_colon'   => __( 'Parent Movie', 'twentytwenty' ),
+			'all_items'           => __( 'All Movies', 'twentytwenty' ),
+			'view_item'           => __( 'View Movie', 'twentytwenty' ),
+			'add_new_item'        => __( 'Add New Movie', 'twentytwenty' ),
+			'add_new'             => __( 'Add New', 'twentytwenty' ),
+			'edit_item'           => __( 'Edit Movie', 'twentytwenty' ),
+			'update_item'         => __( 'Update Movie', 'twentytwenty' ),
+			'search_items'        => __( 'Search Movie', 'twentytwenty' ),
+			'not_found'           => __( 'Not Found', 'twentytwenty' ),
+			'not_found_in_trash'  => __( 'Not found in Trash', 'twentytwenty' ),
+		);
+
+	// Set other options for Custom Post Type
+
+		$args = array(
+			'label'               => __( 'movies', 'twentytwenty' ),
+			'description'         => __( 'Movie news and reviews', 'twentytwenty' ),
+			'labels'              => $labels,
+			// Features this CPT supports in Post Editor
+			'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions' ),
+			// You can associate this CPT with a taxonomy or custom taxonomy.
+			'taxonomies'          => array( 'genres' ),
+			/* A hierarchical CPT is like Pages and can have
+			* Parent and child items. A non-hierarchical CPT
+			* is like Posts.
+			*/
+			'hierarchical'        => false,
+			'public'              => true,
+			'show_ui'             => true,
+			'show_in_menu'        => true,
+			'show_in_nav_menus'   => true,
+			'show_in_admin_bar'   => true,
+			'menu_position'       => 5,
+			'can_export'          => true,
+			'has_archive'         => true,
+			'exclude_from_search' => false,
+			'publicly_queryable'  => true,
+			'capability_type'     => 'post',
+			'show_in_rest' => true,
+
+		);
+
+		// Registering your Custom Post Type
+		register_post_type( 'movies', $args );
+
 	}
 
-	printf(
-		'<p id="dolly"><span class="screen-reader-text">%s </span><span dir="ltr"%s>%s</span></p>',
-		__( 'Quote from Hello Dolly song, by Jerry Herman:' ),
-		$lang,
-		$chosen
-	);
-}
+	/* Hook into the 'init' action so that the function
+	* Containing our post type registration is not 
+	* unnecessarily executed. 
+	*/
 
-// Now we set that function up to execute when the admin_notices action is called.
-add_action( 'admin_notices', 'hello_dolly' );
-
-// We need some CSS to position the paragraph.
-function dolly_css() {
-	echo "
-	<style type='text/css'>
-	#dolly {
-		float: right;
-		padding: 5px 10px;
-		margin: 0;
-		font-size: 12px;
-		line-height: 1.6666;
-	}
-	.rtl #dolly {
-		float: left;
-	}
-	.block-editor-page #dolly {
-		display: none;
-	}
-	@media screen and (max-width: 782px) {
-		#dolly,
-		.rtl #dolly {
-			float: none;
-			padding-left: 0;
-			padding-right: 0;
-		}
-	}
-	</style>
-	";
-}
-
-add_action( 'admin_head', 'dolly_css' );
+	add_action( 'init', 'custom_post_type', 0 );
