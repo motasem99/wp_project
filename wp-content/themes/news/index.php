@@ -212,9 +212,9 @@ get_header();
           $page_num =1;
         }
               $args = array(
-                'post_type' => 'post',
-                'posts_per_page' => 3,
-                'paged' => 2,
+                'post_type' => 'movies',
+                // 'posts_per_page' => 3,
+                // 'paged' => 2,
                 'orderby' => 'ID',
                 'order' => 'DESC',
               );
@@ -238,7 +238,7 @@ get_header();
             </div>
           </div>
         <?php
-                } } ?>
+            }}?>
         </div>
 
       </div>
