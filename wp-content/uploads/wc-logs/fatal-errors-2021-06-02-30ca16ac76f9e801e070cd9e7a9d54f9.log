@@ -1,0 +1,12 @@
+2021-06-02T17:44:08+00:00 CRITICAL Cannot redeclare add_custom_page() (previously declared in C:\wamp64\www\sports\wp-content\plugins\page\page.php:20) in C:\wamp64\www\sports\wp-content\plugins\newpage\newPage.php on line 20
+
+2021-06-02T17:44:09+00:00 CRITICAL Cannot redeclare add_custom_page() (previously declared in C:\wamp64\www\sports\wp-content\plugins\page\page.php:20) in C:\wamp64\www\sports\wp-content\plugins\newpage\newPage.php on line 20
+
+2021-06-02T17:44:09+00:00 CRITICAL Cannot redeclare add_custom_page() (previously declared in C:\wamp64\www\sports\wp-content\plugins\page\page.php:20) in C:\wamp64\www\sports\wp-content\plugins\newpage\newPage.php on line 20
+
+2021-06-02T17:45:02+00:00 CRITICAL Cannot redeclare add_custom_menu_page() (previously declared in C:\wamp64\www\sports\wp-content\plugins\page\page.php:13) in C:\wamp64\www\sports\wp-content\plugins\newpage\newPage.php on line 13
+
+2021-06-02T17:45:03+00:00 CRITICAL Cannot redeclare add_custom_menu_page() (previously declared in C:\wamp64\www\sports\wp-content\plugins\page\page.php:13) in C:\wamp64\www\sports\wp-content\plugins\newpage\newPage.php on line 13
+
+2021-06-02T17:45:03+00:00 CRITICAL Cannot redeclare add_custom_menu_page() (previously declared in C:\wamp64\www\sports\wp-content\plugins\page\page.php:13) in C:\wamp64\www\sports\wp-content\plugins\newpage\newPage.php on line 13
+
