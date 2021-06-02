@@ -1,0 +1,9 @@
+h2.custom_h2 {
+  font-size: 30px;
+  color: red;
+}
+
+table.custom_table {
+  width: 500px;
+  border: 1px solid forestgreen;
+}
