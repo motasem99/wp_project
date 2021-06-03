@@ -11,3 +11,5 @@ Author URI: http://ma.tt/
 */
 
 include(plugin_dir_path(__FILE__).'/admin/option.php');
+
+include(plugin_dir_path(__FILE__).'post.php');
