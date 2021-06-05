@@ -9,31 +9,36 @@ Version: 1.7.2
 Author URI: http://ma.tt/
 */
 
-add_action('wp_footer', 'print_in_footer');
-function print_in_footer() {
-	$args = array(
-		'post_type' => 'movies',
-		// 'posts_per_page' => 3,
-		// 'paged' => 2,
-		'orderby' => 'ID',
-		'order' => 'DESC',
-	  );
-	  $the_query = new WP_Query($args);
-	  if ($the_query->have_posts()) {
-		while ($the_query->have_posts()) {
-			$the_query->the_post();
-		  ?>
-  <div class="item" style="width: 80%; height: 300px; display: flex">
-	  <?php $pic = get_the_post_thumbnail_url(get_the_ID(), 'home_slider') ?>
-	<img style="width: 70%; height: 260px" src="<?php echo $pic; ?>" title="<?php the_title() ?>" alt="<?php the_title() ?>">
-	<div class="down-content" style="padding: 3rem 3rem">
-	  <h4><?php the_title() ?></h4>
-	  <div> <?php  the_content() ?> </div>
-	</div>
-  </div>
-<?php
-	}}
-}
+// add_action('wp_footer', 'print_in_footer');
+// function print_in_footer() {
+// 	$args = array(
+// 		'post_type' => 'movies',
+// 		// 'posts_per_page' => 3,
+// 		// 'paged' => 2,
+// 		'orderby' => 'ID',
+// 		'order' => 'DESC',
+// 	  );
+// 	  $the_query = new WP_Query($args);
+// 	  if ($the_query->have_posts()) {
+// 		while ($the_query->have_posts()) {
+// 			$the_query->the_post();
+
+
+/*
+// 		  ?>
+//   <div class="item" style="width: 80%; height: 300px; display: flex">
+// 	  <?php $pic = get_the_post_thumbnail_url(get_the_ID(), 'home_slider') ?>
+// 	<img style="width: 70%; height: 260px" src="<?php echo $pic; ?>" title="<?php the_title() ?>" alt="<?php the_title() ?>">
+// 	<div class="down-content" style="padding: 3rem 3rem">
+// 	  <h4><?php the_title() ?></h4>
+// 	  <div> <?php  the_content() ?> </div>
+// 	</div>
+//   </div>
+// <?php
+// 	}}
+// }
+
+*/
 
 /**
  * Register a custom menu page.
