@@ -10,6 +10,7 @@ Author URI: http://ma.tt/
 */
 
 
+
 function wpdocs_kantbtrue_init() {
     $labels = array(
         'name'                  => _x( 'clothes', 'Post type general name', 'clothes' ),
@@ -67,17 +68,17 @@ add_action( 'init', 'wpdocs_kantbtrue_init' );
 function wpdocs_create_book_taxonomies() {
     // Add new taxonomy, make it hierarchical (like categories)
     $labels = array(
-        'name'              => _x('Genres', 'taxonomy general name', 'textdomain'),
+        'name'              => _x('category', 'taxonomy general name', 'textdomain'),
         'singular_name'     => _x('Genre', 'taxonomy singular name', 'textdomain'),
-        'search_items'      => __('Search Genres', 'textdomain'),
-        'all_items'         => __('All Genres', 'textdomain'),
-        'parent_item'       => __('Parent Genre', 'textdomain'),
-        'parent_item_colon' => __('Parent Genre:', 'textdomain'),
-        'edit_item'         => __('Edit Genre', 'textdomain'),
-        'update_item'       => __('Update Genre', 'textdomain'),
-        'add_new_item'      => __('Add New Genre', 'textdomain'),
-        'new_item_name'     => __('New Genre Name', 'textdomain'),
-        'menu_name'         => __('Genre', 'textdomain'),
+        'search_items'      => __('Search category', 'textdomain'),
+        'all_items'         => __('All category', 'textdomain'),
+        'parent_item'       => __('Parent category', 'textdomain'),
+        'parent_item_colon' => __('Parent category:', 'textdomain'),
+        'edit_item'         => __('Edit category', 'textdomain'),
+        'update_item'       => __('Update category', 'textdomain'),
+        'add_new_item'      => __('Add New category', 'textdomain'),
+        'new_item_name'     => __('New category Name', 'textdomain'),
+        'menu_name'         => __('category', 'textdomain'),
     );
  
     $args = array(
