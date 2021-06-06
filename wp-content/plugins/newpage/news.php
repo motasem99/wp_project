@@ -21,11 +21,11 @@ function print_in_footer() {
 		while ($the_query->have_posts()) {
 			$the_query->the_post();
 		  ?>
-  <div class="item" style="width: 80%; height: 300px; display: flex">
+  <div class="item" style="width: 100%; height: 300px; display: flex; background-color: <?php echo get_option('my_plugin_backgroundColor'); ?> ">
 	  <?php $pic = get_the_post_thumbnail_url(get_the_ID(), 'home_slider') ?>
 	<img style="width: 70%; height: 260px" src="<?php echo $pic; ?>" title="<?php the_title() ?>" alt="<?php the_title() ?>">
-	<div class="down-content" style="padding: 3rem 3rem">
-	  <h4><?php the_title() ?></h4>
+	<div class="down-content" style="padding: 3rem 3rem; color: <?php echo get_option('my_plugin_color'); ?>">
+	  <h4 style="font-size: <?php echo get_option('my_plugin_fontsize'); ?>px"><?php the_title() ?></h4>
 	  <div> <?php  the_content() ?> </div>
 	</div>
   </div>
